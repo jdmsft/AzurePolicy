@@ -7,16 +7,14 @@
             "tagName": {
                 "type": "String",
                 "metadata": {
-                    "description": "Name of the tag, such as Environment.",
-                    "strongType": "tagName"
+                    "description": "Name of the tag, such as Environment."
                 }
             },
             "tagValues": {
                 "type": "Array",
                 "metadata": {
                     "description": "The list of allowed tag values.",
-                    "displayName": "Allowed tag values (use ; to separate)",
-                    "strongType": "tagValues"
+                    "displayName": "Allowed tag values (use ; to separate)"
                 }
             }
         },
