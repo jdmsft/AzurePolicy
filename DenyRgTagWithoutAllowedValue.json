@@ -1,0 +1,43 @@
+{
+    "properties": {
+        "displayName": "Require a tag and allowed value on resource group",
+        "description": "Require a tag and allowed value on resource group",
+        "mode": "all",
+        "parameters": {
+            "tagName": {
+                "type": "String",
+                "metadata": {
+                    "description": "Name of the tag, such as Environment.",
+                    "strongType": "tagName"
+                }
+            },
+            "tagValues": {
+                "type": "Array",
+                "metadata": {
+                    "description": "The list of allowed tag values.",
+                    "displayName": "Allowed tag values (use ; to separate)",
+                    "strongType": "tagValues"
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+                    },
+                    {
+                        "not": {
+                            "field": "[concat('tags[',parameters('tagName'),']')]",
+                            "in": "[parameters('tagValues')]"
+                        }
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    }
+}
